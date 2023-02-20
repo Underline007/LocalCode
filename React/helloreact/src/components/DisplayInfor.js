@@ -3,8 +3,28 @@ import './DisplayInfor.scss'
 import logo from './../logo.svg';
 
 class DisplayInfor extends React.Component {
-    state = {
-        isShowListUser: true
+    constructor(props) {
+        console.log("call constructor")
+        super(props);
+        this.state = {
+            isShowListUser: true
+        }
+    }
+
+    componentDidMount() {
+        console.log("Call me did mount");
+        setTimeout(() => {
+            document.title = " Dzung and React"
+        }, 3000)
+    }
+
+    componentDidUpdate(prevProps, prevState, snapshot) {
+        console.log("call me did update", this.props, prevProps)
+        if (this.props.listUser != prevProps.listUser) {
+            if (this.props.listUser.length === 5) {
+                alert("You got 5 user")
+            }
+        }
     }
 
     handShowHide = () => {
@@ -15,6 +35,7 @@ class DisplayInfor extends React.Component {
 
 
     render() {
+        console.log("Call me render")
         const { listUser } = this.props;
         console.log(listUser)
         //props là viết tắt của properties 
